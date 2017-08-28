@@ -47,20 +47,17 @@ public class Hangman {
 
 
         if (entity != null) {
-            System.out.println(EntityUtils.toString(entity));
-
 
             String retSrc = EntityUtils.toString(entity);
+            System.out.println("Entity:" + retSrc);
+
             // parsing JSON
 
             JSONObject result = new JSONObject(retSrc); //Convert String to JSON Object
-
-            JSONArray tokenList = result.getJSONArray("names");
-            JSONObject oj = tokenList.getJSONObject(0);
-            String token = oj.getString("name");
-
+            String t = (String) result.get("token");
+            return t;
         }
-        return "Hello!";
+        return null; // TODO
     }
 
     private void guess() throws IOException {
