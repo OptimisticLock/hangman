@@ -21,6 +21,6 @@ about your solution and why you chose to implement it and how it could be done b
 
 * letters in orders of occurrence
 * use the dictionary 
-* cache and reuse tokens or their subsets.
+* cache and reuse tokens or their subsets: https://github.com/OptimisticLock/hangman/blob/master/debug/Heuristics.md
 
 
