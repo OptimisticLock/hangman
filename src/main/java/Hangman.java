@@ -13,45 +13,49 @@ public class Hangman {
 
     DefaultHttpClient client;
     HttpResponse asdfadf;
+    DefaultHttpClient httpClient = new DefaultHttpClient();// TODO:deprecated; TODO:manage reconnects
+    HttpHost target = new HttpHost("hangman-api.herokuapp.com", 80, "http");
+
+
+    public void newGame() throws Exception {  // TODO
+        // specify the get request
+        HttpPost postRequest = new HttpPost("/hangman");
+
+        System.out.println("executing request to " + target);
+
+        HttpResponse httpResponse = httpClient.execute(target, postRequest);
+        HttpEntity entity = httpResponse.getEntity();
+
+        System.out.println("----------------------------------------");
+        System.out.println(httpResponse.getStatusLine());
+        Header[] headers = httpResponse.getAllHeaders();
+        for (int i = 0; i < headers.length; i++) {
+            System.out.println(headers[i]);
+        }
+        System.out.println("----------------------------------------");
+
+        if (entity != null) {
+            System.out.println(EntityUtils.toString(entity));
+        }
+
+    }
 
     public static void main(String[] args) {
-        DefaultHttpClient httpclient = new DefaultHttpClient();// TODO:deprecated
+        new Hangman().run();
+    }
+
+    private void run() {
         try {
-            // specify the host, protocol, and port
-            HttpHost target = new HttpHost("hangman-api.herokuapp.com", 80, "http");
+            newGame();
 
-            // specify the get request
-            HttpPost postRequest = new HttpPost("/hangman");
-
-            System.out.println("executing request to " + target);
-
-            HttpResponse httpResponse = httpclient.execute(target, postRequest);
-            HttpEntity entity = httpResponse.getEntity();
-
-            System.out.println("----------------------------------------");
-            System.out.println(httpResponse.getStatusLine());
-            Header[] headers = httpResponse.getAllHeaders();
-            for (int i = 0; i < headers.length; i++) {
-                System.out.println(headers[i]);
-            }
-            System.out.println("----------------------------------------");
-
-            if (entity != null) {
-                System.out.println(EntityUtils.toString(entity));
-            }
-
-        } catch (Exception e) {
+        } catch (Exception e) { // TODO be specific
             e.printStackTrace();
         } finally {
             // When HttpClient instance is no longer needed,
             // shut down the connection manager to ensure
             // immediate deallocation of all system resources
-            httpclient.getConnectionManager().shutdown();
+            httpClient.getConnectionManager().shutdown();
         }
     }
-
-    public void newGame() {
-
-
-    }
 }
+
