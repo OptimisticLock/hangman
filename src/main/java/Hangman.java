@@ -114,24 +114,21 @@ public class Hangman {
 
         long start = System.currentTimeMillis();
         startNewGame();
-        char letter = 'a';
 
-        while (true) {
+        for (char letter = 'a'; letter <= 'z'; letter++) {
             System.out.print("Guessing letter " + letter + " ");
             JSONObject response = guessNextMove(letter);
             String hangman = (String) response.get("hangman");
             boolean isSolved = !hangman.contains("_");
-            letter++;
-
-            if (letter > 'z')
-                return "#### Error ####";
-
             if (isSolved) {
-                System.out.println("Game solved:" + hangman + "\n");
+                long now = System.currentTimeMillis();
+                double elapsed = (now - start) / 1000.;
+                System.out.println("Game solved in " + elapsed + " seconds: '" + hangman + "'");
                 System.out.println("----------------------------------------");
                 return hangman;
             }
         }
+        return "#### Error: Word contains an invalid character";
     }
 }
 
