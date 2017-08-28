@@ -22,8 +22,8 @@ import java.util.Scanner;
 
 public class Hangman {
 
-    DefaultHttpClient httpClient = new DefaultHttpClient();// TODO:deprecated; TODO:manage reconnects
-    HttpHost host = new HttpHost("hangman-api.herokuapp.com", 80, "http");
+    DefaultHttpClient httpClient;
+    HttpHost host;
     private String[] words;
     private String token;
 
@@ -95,6 +95,9 @@ public class Hangman {
     private void run() {
         try {
             words = readWords();
+            httpClient = new DefaultHttpClient();// TODO:deprecated; TODO:manage reconnects
+            host = new HttpHost("hangman-api.herokuapp.com", 80, "http");
+
 
             while (true) {
                 playNewGame();
@@ -128,7 +131,7 @@ public class Hangman {
                 return hangman;
             }
         }
-        return "#### Error: Word contains an invalid character";
+        return "#### Error: Word contains an invalid character: ";
     }
 }
 

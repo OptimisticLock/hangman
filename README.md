@@ -21,6 +21,6 @@ about your solution and why you chose to implement it and how it could be done b
 
 * letters in orders of occurrence
 * use the dictionary 
-* cache and reuse the tokens.
+* cache and reuse tokens or their subsets.
 
 
