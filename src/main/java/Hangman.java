@@ -49,11 +49,11 @@ public class Hangman {
      * @return Game token   // curl hangman-api.herokuapp.com/hangman -X POST
      * @throws Exception
      */
-    public void newGame() throws Exception {  // TODO
+    public void startNewGame() throws Exception {  // TODO
         // specify the get request
         HttpPost postRequest = new HttpPost("/hangman");
 
-  //      System.out.println("executing request to " + host);
+        //      System.out.println("executing request to " + host);
 
         HttpResponse httpResponse = httpClient.execute(host, postRequest);
         JSONObject json = toJson(httpResponse);
@@ -76,40 +76,28 @@ public class Hangman {
     // Good:curl -X PUT -d token=eyJzb2x1dGlvbiI6InNwaXJvY2hldGljIiwiY29ycmVjdF9ndWVzc2VzIjpbImUiLCJyIl0sIndyb25nX2d1ZXNzZXMiOltdfQ== -d letter=o http://hangman-api.herokuapp.com/hangman
     // Bad: curl -X PUT -d token=eyJzb2x1dGlvbiI6InJoeXRobWljIiwiY29ycmVjdF9ndWVzc2VzIjpbXScyI6W119 -d letter=a http://hangman-api.herokuapp.com/hangman
 
-    private void guessNextMove(char letter) throws IOException, JSONException {
-        // PUT /hangman { token: game token, letter: guess }
+    private JSONObject guessNextMove(char letter) throws IOException, JSONException {
 
-        //     String data = "{ token: '" + gameId + "', letter: letter}";
         HttpPut request = new HttpPut("/hangman");
-
         List<NameValuePair> params = new ArrayList<NameValuePair>();
         params.add(new BasicNameValuePair("token", token));
         params.add(new BasicNameValuePair("letter", "" + letter));
         request.setEntity(new UrlEncodedFormEntity(params));
- //       System.out.println("executing request to " + request);
-
         HttpResponse httpResponse = httpClient.execute(host, request);
 
-      //  {"hangman":"____a_","correct":true,"token":"eyJzb2x1dGlvbiI6ImNlbnRhbCIsImNvcnJlY3RfZ3Vlc3NlcyI6WyJhIl0sIndyb25nX2d1ZXNzZXMiOltdfQ=="}
+        //  {"hangman":"____a_","correct":true,"token":"eyJzb2x1dGlvbiI6ImNlbnRhbCIsImNvcnJlY3RfZ3Vlc3NlcyI6WyJhIl0sIndyb25nX2d1ZXNzZXMiOltdfQ=="}
         JSONObject json = toJson(httpResponse);
         token = (String) json.get("token"); // TODO DRY
+        return json;
     }
 
-    char letter = 'a'; // TODO
-
-    private char guess() {
-        System.out.println("Guessing letter " + letter);
-        return letter++; // TODO assert that <= 'z', also check for case sensitivity
-    }
 
     private void run() {
         try {
             words = readWords();
-            newGame();
 
             while (true) {
-                char letter = guess();
-                guessNextMove(letter);
+                playNewGame();
             }
 
         } catch (Exception e) { // TODO be specific
@@ -121,5 +109,30 @@ public class Hangman {
             httpClient.getConnectionManager().shutdown();
         }
     }
+
+    private String playNewGame() throws Exception {
+
+        long start = System.currentTimeMillis();
+        startNewGame();
+        char letter = 'a';
+
+        while (true) {
+            System.out.print("Guessing letter " + letter + " ");
+            JSONObject response = guessNextMove(letter);
+            String hangman = (String) response.get("hangman");
+            boolean isSolved = !hangman.contains("_");
+            letter++;
+
+            if (letter > 'z')
+                return "#### Error ####";
+
+            if (isSolved) {
+                System.out.println("Game solved:" + hangman + "\n");
+                System.out.println("----------------------------------------");
+                return hangman;
+            }
+        }
+    }
 }
+
 
