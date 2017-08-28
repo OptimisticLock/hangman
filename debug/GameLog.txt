@@ -1,0 +1,131 @@
+
+# From this sample log, my hypothesis is that the first 64 characters of the token, in this case "token":"eyJzb2x1dGlvbiI6InBpY3R1cmFiaWxpdHkiLCJjb3JyZWN0X2d1ZXNzZXMiOl",
+# map uniquely to the word.
+#
+# New game (spaces below added for emphasis):
+#{"hangman":"_____________","token":"eyJzb2x1dGlvbiI6InBpY3R1cmFiaWxpdHkiLCJjb3JyZWN0X2d1ZXNzZXMiOl      tdLCJ3cm9uZ19ndWVzc2VzIjpbXX0="}
+#
+# Regex: /"token".{64}/
+#
+# Also, it appears that every subsequent key is longer than the previous one.
+#
+# TODO:what's dfQ== and similar?
+#
+
+/Library/Java/JavaVirtualMachines/jdk1.8.0_91.jdk/Contents/Home/bin/java -agentlib:jdwp=transport=dt_socket,address=127.0.0.1:55816,suspend=y,server=n -Dfile.encoding=UTF-8 -classpath "/Library/Java/JavaVirtualMachines/jdk1.8.0_91.jdk/Contents/Home/jre/lib/charsets.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_91.jdk/Contents/Home/jre/lib/deploy.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_91.jdk/Contents/Home/jre/lib/ext/cldrdata.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_91.jdk/Contents/Home/jre/lib/ext/dnsns.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_91.jdk/Contents/Home/jre/lib/ext/jaccess.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_91.jdk/Contents/Home/jre/lib/ext/jfxrt.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_91.jdk/Contents/Home/jre/lib/ext/localedata.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_91.jdk/Contents/Home/jre/lib/ext/nashorn.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_91.jdk/Contents/Home/jre/lib/ext/sunec.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_91.jdk/Contents/Home/jre/lib/ext/sunjce_provider.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_91.jdk/Contents/Home/jre/lib/ext/sunpkcs11.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_91.jdk/Contents/Home/jre/lib/ext/zipfs.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_91.jdk/Contents/Home/jre/lib/javaws.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_91.jdk/Contents/Home/jre/lib/jce.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_91.jdk/Contents/Home/jre/lib/jfr.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_91.jdk/Contents/Home/jre/lib/jfxswt.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_91.jdk/Contents/Home/jre/lib/jsse.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_91.jdk/Contents/Home/jre/lib/management-agent.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_91.jdk/Contents/Home/jre/lib/plugin.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_91.jdk/Contents/Home/jre/lib/resources.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_91.jdk/Contents/Home/jre/lib/rt.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_91.jdk/Contents/Home/lib/ant-javafx.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_91.jdk/Contents/Home/lib/dt.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_91.jdk/Contents/Home/lib/javafx-mx.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_91.jdk/Contents/Home/lib/jconsole.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_91.jdk/Contents/Home/lib/packager.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_91.jdk/Contents/Home/lib/sa-jdi.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_91.jdk/Contents/Home/lib/tools.jar:/Users/irinaapex/IdeaProjects/bilalMaven/target/classes:/Users/irinaapex/.m2/repository/org/apache/httpcomponents/httpclient/4.5.3/httpclient-4.5.3.jar:/Users/irinaapex/.m2/repository/org/apache/httpcomponents/httpcore/4.4.6/httpcore-4.4.6.jar:/Users/irinaapex/.m2/repository/commons-logging/commons-logging/1.2/commons-logging-1.2.jar:/Users/irinaapex/.m2/repository/commons-codec/commons-codec/1.9/commons-codec-1.9.jar:/Users/irinaapex/.m2/repository/org/json/json/20090211/json-20090211.jar:/Applications/IntelliJ IDEA 2017.2 EAP.app/Contents/lib/idea_rt.jar" Hangman
+Connected to the target VM, address: '127.0.0.1:55816', transport: 'socket'
+executing request to http://hangman-api.herokuapp.com:80
+
+# New game:
+Entity:{"hangman":"_____________","token":"eyJzb2x1dGlvbiI6InBpY3R1cmFiaWxpdHkiLCJjb3JyZWN0X2d1ZXNzZXMiOltdLCJ3cm9uZ19ndWVzc2VzIjpbXX0="}
+
+Guessing letter a
+executing request to PUT /hangman HTTP/1.1
+Entity:{"hangman":"______a______","correct":true,"token":"eyJzb2x1dGlvbiI6InBpY3R1cmFiaWxpdHkiLCJjb3JyZWN0X2d1ZXNzZXMiOlsiYS  JdLCJ3cm9uZ19ndWVzc2VzIjpbXX0="}
+
+Guessing letter b
+executing request to PUT /hangman HTTP/1.1
+Entity:{"hangman":"______ab_____","correct":true,"token":"eyJzb2x1dGlvbiI6InBpY3R1cmFiaWxpdHkiLCJjb3JyZWN0X2d1ZXNzZXMiOlsiYS  IsImIi   XSwid3JvbmdfZ3Vlc3NlcyI6W119"}
+
+Guessing letter c
+executing request to PUT /hangman HTTP/1.1
+Entity:{"hangman":"__c___ab_____","correct":true,"token":"eyJzb2x1dGlvbiI6InBpY3R1cmFiaWxpdHkiLCJjb3JyZWN0X2d1ZXNzZXMiOlsiYS  IsImIi   LCJjIl0sIndyb25nX2d1ZXNzZXMiOl  t  dfQ=="}
+Guessing letter d
+executing request to PUT /hangman HTTP/1.1
+Entity:{"hangman":"__c___ab_____","correct":false,"token":"eyJzb2x1dGlvbiI6InBpY3R1cmFiaWxpdHkiLCJjb3JyZWN0X2d1ZXNzZXMiOlsiYSIsImIi    LCJjIl0sIndyb25nX2d1ZXNzZXMiOl  siZC  J  dfQ=="}
+
+Guessing letter e
+executing request to PUT /hangman HTTP/1.1
+Entity:{"hangman":"__c___ab_____","correct":false,"token":"eyJzb2x1dGlvbiI6InBpY3R1cmFiaWxpdHkiLCJjb3JyZWN0X2d1ZXNzZXMiOlsiYSIsImIi    LCJjIl0sIndyb25nX2d1ZXNzZXMiOl   siZC I  sImUiXX0="}
+Guessing letter f
+executing request to PUT /hangman HTTP/1.1
+Entity:{"hangman":"__c___ab_____","correct":false,"token":"eyJzb2x1dGlvbiI6InBpY3R1cmFiaWxpdHkiLCJjb3JyZWN0X2d1ZXNzZXMiOlsiYSIsImIiLCJjIl0sIndyb25nX2d1ZXNzZXMiOlsiZCIsImUiLCJmIl19"}
+Guessing letter g
+executing request to PUT /hangman HTTP/1.1
+Entity:{"hangman":"__c___ab_____","correct":false,"token":"eyJzb2x1dGlvbiI6InBpY3R1cmFiaWxpdHkiLCJjb3JyZWN0X2d1ZXNzZXMiOlsiYSIsImIiLCJjIl0sIndyb25nX2d1ZXNzZXMiOlsiZCIsImUiLCJmIiwiZyJdfQ=="}
+Guessing letter h
+executing request to PUT /hangman HTTP/1.1
+Entity:{"hangman":"__c___ab_____","correct":false,"token":"eyJzb2x1dGlvbiI6InBpY3R1cmFiaWxpdHkiLCJjb3JyZWN0X2d1ZXNzZXMiOlsiYSIsImIiLCJjIl0sIndyb25nX2d1ZXNzZXMiOlsiZCIsImUiLCJmIiwiZyIsImgiXX0="}
+Guessing letter i
+executing request to PUT /hangman HTTP/1.1
+Entity:{"hangman":"_ic___abi_i__","correct":true,"token":"eyJzb2x1dGlvbiI6InBpY3R1cmFiaWxpdHkiLCJjb3JyZWN0X2d1ZXNzZXMiOlsiYSIsImIiLCJjIiwiaSJdLCJ3cm9uZ19ndWVzc2VzIjpbImQiLCJlIiwiZiIsImciLCJoIl19"}
+Guessing letter j
+executing request to PUT /hangman HTTP/1.1
+Entity:{"hangman":"_ic___abi_i__","correct":false,"token":"eyJzb2x1dGlvbiI6InBpY3R1cmFiaWxpdHkiLCJjb3JyZWN0X2d1ZXNzZXMiOlsiYSIsImIiLCJjIiwiaSJdLCJ3cm9uZ19ndWVzc2VzIjpbImQiLCJlIiwiZiIsImciLCJoIiwiaiJdfQ=="}
+Guessing letter k
+executing request to PUT /hangman HTTP/1.1
+Entity:{"hangman":"_ic___abi_i__","correct":false,"token":"eyJzb2x1dGlvbiI6InBpY3R1cmFiaWxpdHkiLCJjb3JyZWN0X2d1ZXNzZXMiOlsiYSIsImIiLCJjIiwiaSJdLCJ3cm9uZ19ndWVzc2VzIjpbImQiLCJlIiwiZiIsImciLCJoIiwiaiIsImsiXX0="}
+Guessing letter l
+executing request to PUT /hangman HTTP/1.1
+Entity:{"hangman":"_ic___abili__","correct":true,"token":"eyJzb2x1dGlvbiI6InBpY3R1cmFiaWxpdHkiLCJjb3JyZWN0X2d1ZXNzZXMiOlsiYSIsImIiLCJjIiwiaSIsImwiXSwid3JvbmdfZ3Vlc3NlcyI6WyJkIiwiZSIsImYiLCJnIiwiaCIsImoiLCJrIl19"}
+Guessing letter m
+executing request to PUT /hangman HTTP/1.1
+Entity:{"hangman":"_ic___abili__","correct":false,"token":"eyJzb2x1dGlvbiI6InBpY3R1cmFiaWxpdHkiLCJjb3JyZWN0X2d1ZXNzZXMiOlsiYSIsImIiLCJjIiwiaSIsImwiXSwid3JvbmdfZ3Vlc3NlcyI6WyJkIiwiZSIsImYiLCJnIiwiaCIsImoiLCJrIiwibSJdfQ=="}
+Guessing letter n
+executing request to PUT /hangman HTTP/1.1
+Entity:{"hangman":"_ic___abili__","correct":false,"token":"eyJzb2x1dGlvbiI6InBpY3R1cmFiaWxpdHkiLCJjb3JyZWN0X2d1ZXNzZXMiOlsiYSIsImIiLCJjIiwiaSIsImwiXSwid3JvbmdfZ3Vlc3NlcyI6WyJkIiwiZSIsImYiLCJnIiwiaCIsImoiLCJrIiwibSIsIm4iXX0="}
+Guessing letter o
+executing request to PUT /hangman HTTP/1.1
+Entity:{"hangman":"_ic___abili__","correct":false,"token":"eyJzb2x1dGlvbiI6InBpY3R1cmFiaWxpdHkiLCJjb3JyZWN0X2d1ZXNzZXMiOlsiYSIsImIiLCJjIiwiaSIsImwiXSwid3JvbmdfZ3Vlc3NlcyI6WyJkIiwiZSIsImYiLCJnIiwiaCIsImoiLCJrIiwibSIsIm4iLCJvIl19"}
+Guessing letter p
+executing request to PUT /hangman HTTP/1.1
+Entity:{"hangman":"pic___abili__","correct":true,"token":"eyJzb2x1dGlvbiI6InBpY3R1cmFiaWxpdHkiLCJjb3JyZWN0X2d1ZXNzZXMiOlsiYSIsImIiLCJjIiwiaSIsImwiLCJwIl0sIndyb25nX2d1ZXNzZXMiOlsiZCIsImUiLCJmIiwiZyIsImgiLCJqIiwiayIsIm0iLCJuIiwibyJdfQ=="}
+Guessing letter q
+executing request to PUT /hangman HTTP/1.1
+Entity:{"hangman":"pic___abili__","correct":false,"token":"eyJzb2x1dGlvbiI6InBpY3R1cmFiaWxpdHkiLCJjb3JyZWN0X2d1ZXNzZXMiOlsiYSIsImIiLCJjIiwiaSIsImwiLCJwIl0sIndyb25nX2d1ZXNzZXMiOlsiZCIsImUiLCJmIiwiZyIsImgiLCJqIiwiayIsIm0iLCJuIiwibyIsInEiXX0="}
+Guessing letter r
+executing request to PUT /hangman HTTP/1.1
+Entity:{"hangman":"pic__rabili__","correct":true,"token":"eyJzb2x1dGlvbiI6InBpY3R1cmFiaWxpdHkiLCJjb3JyZWN0X2d1ZXNzZXMiOlsiYSIsImIiLCJjIiwiaSIsImwiLCJwIiwiciJdLCJ3cm9uZ19ndWVzc2VzIjpbImQiLCJlIiwiZiIsImciLCJoIiwiaiIsImsiLCJtIiwibiIsIm8iLCJxIl19"}
+Guessing letter s
+executing request to PUT /hangman HTTP/1.1
+Entity:{"hangman":"pic__rabili__","correct":false,"token":"eyJzb2x1dGlvbiI6InBpY3R1cmFiaWxpdHkiLCJjb3JyZWN0X2d1ZXNzZXMiOlsiYSIsImIiLCJjIiwiaSIsImwiLCJwIiwiciJdLCJ3cm9uZ19ndWVzc2VzIjpbImQiLCJlIiwiZiIsImciLCJoIiwiaiIsImsiLCJtIiwibiIsIm8iLCJxIiwicyJdfQ=="}
+Guessing letter t
+executing request to PUT /hangman HTTP/1.1
+Entity:{"hangman":"pict_rabilit_","correct":true,"token":"eyJzb2x1dGlvbiI6InBpY3R1cmFiaWxpdHkiLCJjb3JyZWN0X2d1ZXNzZXMiOlsiYSIsImIiLCJjIiwiaSIsImwiLCJwIiwiciIsInQiXSwid3JvbmdfZ3Vlc3NlcyI6WyJkIiwiZSIsImYiLCJnIiwiaCIsImoiLCJrIiwibSIsIm4iLCJvIiwicSIsInMiXX0="}
+Guessing letter u
+executing request to PUT /hangman HTTP/1.1
+Entity:{"hangman":"picturabilit_","correct":true,"token":"eyJzb2x1dGlvbiI6InBpY3R1cmFiaWxpdHkiLCJjb3JyZWN0X2d1ZXNzZXMiOlsiYSIsImIiLCJjIiwiaSIsImwiLCJwIiwiciIsInQiLCJ1Il0sIndyb25nX2d1ZXNzZXMiOlsiZCIsImUiLCJmIiwiZyIsImgiLCJqIiwiayIsIm0iLCJuIiwibyIsInEiLCJzIl19"}
+Guessing letter v
+executing request to PUT /hangman HTTP/1.1
+Entity:{"hangman":"picturabilit_","correct":false,"token":"eyJzb2x1dGlvbiI6InBpY3R1cmFiaWxpdHkiLCJjb3JyZWN0X2d1ZXNzZXMiOlsiYSIsImIiLCJjIiwiaSIsImwiLCJwIiwiciIsInQiLCJ1Il0sIndyb25nX2d1ZXNzZXMiOlsiZCIsImUiLCJmIiwiZyIsImgiLCJqIiwiayIsIm0iLCJuIiwibyIsInEiLCJzIiwidiJdfQ=="}
+Guessing letter w
+executing request to PUT /hangman HTTP/1.1
+Entity:{"hangman":"picturabilit_","correct":false,"token":"eyJzb2x1dGlvbiI6InBpY3R1cmFiaWxpdHkiLCJjb3JyZWN0X2d1ZXNzZXMiOlsiYSIsImIiLCJjIiwiaSIsImwiLCJwIiwiciIsInQiLCJ1Il0sIndyb25nX2d1ZXNzZXMiOlsiZCIsImUiLCJmIiwiZyIsImgiLCJqIiwiayIsIm0iLCJuIiwibyIsInEiLCJzIiwidiIsInciXX0="}
+Guessing letter x
+executing request to PUT /hangman HTTP/1.1
+Entity:{"hangman":"picturabilit_","correct":false,"token":"eyJzb2x1dGlvbiI6InBpY3R1cmFiaWxpdHkiLCJjb3JyZWN0X2d1ZXNzZXMiOlsiYSIsImIiLCJjIiwiaSIsImwiLCJwIiwiciIsInQiLCJ1Il0sIndyb25nX2d1ZXNzZXMiOlsiZCIsImUiLCJmIiwiZyIsImgiLCJqIiwiayIsIm0iLCJuIiwibyIsInEiLCJzIiwidiIsInciLCJ4Il19"}
+Guessing letter y
+executing request to PUT /hangman HTTP/1.1
+Entity:{"hangman":"picturability","correct":true,"token":"eyJzb2x1dGlvbiI6InBpY3R1cmFiaWxpdHkiLCJjb3JyZWN0X2d1ZXNzZXMiOlsiYSIsImIiLCJjIiwiaSIsImwiLCJwIiwiciIsInQiLCJ1IiwieSJdLCJ3cm9uZ19ndWVzc2VzIjpbImQiLCJlIiwiZiIsImciLCJoIiwiaiIsImsiLCJtIiwibiIsIm8iLCJxIiwicyIsInYiLCJ3IiwieCJdfQ=="}
+Guessing letter z
+executing request to PUT /hangman HTTP/1.1
+Entity:{"hangman":"picturability","correct":false,"token":"eyJzb2x1dGlvbiI6InBpY3R1cmFiaWxpdHkiLCJjb3JyZWN0X2d1ZXNzZXMiOlsiYSIsImIiLCJjIiwiaSIsImwiLCJwIiwiciIsInQiLCJ1IiwieSJdLCJ3cm9uZ19ndWVzc2VzIjpbImQiLCJlIiwiZiIsImciLCJoIiwiaiIsImsiLCJtIiwibiIsIm8iLCJxIiwicyIsInYiLCJ3IiwieCIsInoiXX0="}
+Guessing letter {
+executing request to PUT /hangman HTTP/1.1
+Entity:{"hangman":"picturability","correct":false,"token":"eyJzb2x1dGlvbiI6InBpY3R1cmFiaWxpdHkiLCJjb3JyZWN0X2d1ZXNzZXMiOlsiYSIsImIiLCJjIiwiaSIsImwiLCJwIiwiciIsInQiLCJ1IiwieSJdLCJ3cm9uZ19ndWVzc2VzIjpbImQiLCJlIiwiZiIsImciLCJoIiwiaiIsImsiLCJtIiwibiIsIm8iLCJxIiwicyIsInYiLCJ3IiwieCIsInoiLCJ7Il19"}
+Guessing letter |
+executing request to PUT /hangman HTTP/1.1
+Entity:{"hangman":"picturability","correct":false,"token":"eyJzb2x1dGlvbiI6InBpY3R1cmFiaWxpdHkiLCJjb3JyZWN0X2d1ZXNzZXMiOlsiYSIsImIiLCJjIiwiaSIsImwiLCJwIiwiciIsInQiLCJ1IiwieSJdLCJ3cm9uZ19ndWVzc2VzIjpbImQiLCJlIiwiZiIsImciLCJoIiwiaiIsImsiLCJtIiwibiIsIm8iLCJxIiwicyIsInYiLCJ3IiwieCIsInoiLCJ7IiwifCJdfQ=="}
+Guessing letter }
+executing request to PUT /hangman HTTP/1.1
+Entity:{"hangman":"picturability","correct":false,"token":"eyJzb2x1dGlvbiI6InBpY3R1cmFiaWxpdHkiLCJjb3JyZWN0X2d1ZXNzZXMiOlsiYSIsImIiLCJjIiwiaSIsImwiLCJwIiwiciIsInQiLCJ1IiwieSJdLCJ3cm9uZ19ndWVzc2VzIjpbImQiLCJlIiwiZiIsImciLCJoIiwiaiIsImsiLCJtIiwibiIsIm8iLCJxIiwicyIsInYiLCJ3IiwieCIsInoiLCJ7IiwifCIsIn0iXX0="}
+Guessing letter ~
+executing request to PUT /hangman HTTP/1.1
+Entity:{"hangman":"picturability","correct":false,"token":"eyJzb2x1dGlvbiI6InBpY3R1cmFiaWxpdHkiLCJjb3JyZWN0X2d1ZXNzZXMiOlsiYSIsImIiLCJjIiwiaSIsImwiLCJwIiwiciIsInQiLCJ1IiwieSJdLCJ3cm9uZ19ndWVzc2VzIjpbImQiLCJlIiwiZiIsImciLCJoIiwiaiIsImsiLCJtIiwibiIsIm8iLCJxIiwicyIsInYiLCJ3IiwieCIsInoiLCJ7IiwifCIsIn0iLCJ-Il19"}
+Guessing letter 
+executing request to PUT /hangman HTTP/1.1
+Entity:{"hangman":"picturability","correct":false,"token":"eyJzb2x1dGlvbiI6InBpY3R1cmFiaWxpdHkiLCJjb3JyZWN0X2d1ZXNzZXMiOlsiYSIsImIiLCJjIiwiaSIsImwiLCJwIiwiciIsInQiLCJ1IiwieSJdLCJ3cm9uZ19ndWVzc2VzIjpbImQiLCJlIiwiZiIsImciLCJoIiwiaiIsImsiLCJtIiwibiIsIm8iLCJxIiwicyIsInYiLCJ3IiwieCIsInoiLCJ7IiwifCIsIn0iLCJ-IiwifyJdfQ=="}
+Guessing letter 
+executing request to PUT /hangman HTTP/1.1
+Entity:<h1>Internal Server Error</h1>
+org.json.JSONException: A JSONObject text must begin with '{' at character 1
+	at org.json.JSONTokener.syntaxError(JSONTokener.java:410)
+	at org.json.JSONObject.<init>(JSONObject.java:179)
+	at org.json.JSONObject.<init>(JSONObject.java:402)
+	at Hangman.toJson(Hangman.java:72)
+	at Hangman.guessNextMove(Hangman.java:94)
+	at Hangman.run(Hangman.java:112)
+	at Hangman.main(Hangman.java:31)
+Disconnected from the target VM, address: '127.0.0.1:55816', transport: 'socket'
+
+Process finished with exit code 0

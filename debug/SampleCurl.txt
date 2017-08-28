@@ -1,0 +1,18 @@
+$ curl -X PUT -d token=eyJzb2x1dGlvbiI6InNwaXJvY2hldGljIiwiY29ycmVjdF9ndWVzc2VzIjpbImUiLCJyIl0sIndyb25nX2d1ZXNzZXMiOltdfQ==  -d letter=o http://hangman-api.herokuapp.com/hangman
+{"hangman":"___ro__e___","correct":true,"token":"eyJzb2x1dGlvbiI6InNwaXJvY2hldGljIiwiY29ycmVjdF9ndWVzc2VzIjpbImUiLCJyIiwibyJdLCJ3cm9uZ19ndWVzc2VzIjpbXX0="}
+[419:417 - 0:592] 02:37:39 [irinaapex@Irinas-MacBook-Air.local:o +1] ~/IdeaProjects/bilalMaven
+$ curl -X PUT -d token=eyJzb2x1dGlvbiI6InNwaXJvY2hldGljIiwiY29ycmVjdF9ndWVzc2VzIjpbImUiLCJyIl0sIndyb25nX2d1ZXNzZXMiOltdfQ==  -d letter=r http://hangman-api.herokuapp.com/hangman
+
+[419:417 - 0:593] 02:37:52 [irinaapex@Irinas-MacBook-Air.local:o +1] ~/IdeaProjects/bilalMaven
+$ curl -X PUT -d token=eyJzb2x1dGlvbiI6InNwaXJvY2hldGljIiwiY29ycmVjdF9ndWVzc2VzIjpbImUiLCJyIl0sIndyb25nX2d1ZXNzZXMiOltdfQ==  -d letter=x http://hangman-api.herokuapp.com/hangman
+{"hangman":"___r___e___","correct":false,"token":"eyJzb2x1dGlvbiI6InNwaXJvY2hldGljIiwiY29ycmVjdF9ndWVzc2VzIjpbImUiLCJyIl0sIndyb25nX2d1ZXNzZXMiOlsieCJdfQ=="}
+[419:417 - 0:594] 02:37:58 [irinaapex@Irinas-MacBook-Air.local:o +1] ~/IdeaProjects/bilalMaven
+$ curl -X PUT -d token=eyJzb2x1dGlvbiI6InNwaXJvY2hldGljIiwiY29ycmVjdF9ndWVzc2VzIjpbImUiLCJyIl0sIndyb25nX2d1ZXNzZXMiOltdfQ==  -d letter=y http://hangman-api.herokuapp.com/hangman
+{"hangman":"___r___e___","correct":false,"token":"eyJzb2x1dGlvbiI6InNwaXJvY2hldGljIiwiY29ycmVjdF9ndWVzc2VzIjpbImUiLCJyIl0sIndyb25nX2d1ZXNzZXMiOlsieSJdfQ=="}
+
+The last two have this in common:eyJzb2x1dGlvbiI6InNwaXJvY2hldGljIiwiY29ycmVjdF9ndWVzc2VzIjpbImUiLCJyIl0sIndyb25nX2d1ZXNzZXMiOlsie, differ in JdfQ== vs SJdfQ==
+
+
+
+More tokens
+eyJzb2x1dGlvbiI6ImJ1cnN0ZXIiLCJjb3JyZWN0X2d1ZXNzZXMiOltdLCJ3cm9uZ19ndWVzc2VzIjpbXX0=
