@@ -10,9 +10,12 @@ import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 // https://alvinalexander.com/java/java-apache-httpclient-restful-client-examples
 
@@ -26,6 +29,18 @@ public class Hangman {
     }
 
 
+    public void readLines() throws FileNotFoundException { // TODO exception
+
+        Scanner sc = new Scanner(new File("words"));
+        List<String> lines = new ArrayList<String>();
+        while (sc.hasNextLine()) {
+            lines.add(sc.nextLine());
+        }
+
+        String[] arr = lines.toArray(new String[0]);
+
+    //    FileUtils.readLines(new File("/path/filename"));
+    }
     /**
      * @return Game token   // curl hangman-api.herokuapp.com/hangman -X POST
      * @throws Exception
@@ -104,6 +119,7 @@ public class Hangman {
 
     private void run() {
         try {
+            readLines();
             String gameId = newGame();
             guessNextMove(gameId);
 
