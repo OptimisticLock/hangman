@@ -68,8 +68,8 @@ public class Hangman {
         params.setContentType("application/json");
         request.addHeader("content-type", "application/json");
         request.addHeader("Accept", "*/*");
-        request.addHeader("Accept-Encoding", "gzip,deflate,sdch");
-        request.addHeader("Accept-Language", "en-US,en;q=0.8");
+//        request.addHeader("Accept-Encoding", "gzip,deflate,sdch");
+//        request.addHeader("Accept-Language", "en-US,en;q=0.8");
         request.setEntity(params);
 
         System.out.println("executing request to " + request);
