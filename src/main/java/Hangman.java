@@ -17,7 +17,7 @@ import java.io.IOException;
 public class Hangman {
 
     DefaultHttpClient httpClient = new DefaultHttpClient();// TODO:deprecated; TODO:manage reconnects
-    HttpHost request = new HttpHost("hangman-api.herokuapp.com", 80, "http");
+    HttpHost host = new HttpHost("hangman-api.herokuapp.com", 80, "http");
 
     public static void main(String[] args) {
         new Hangman().run();
@@ -32,9 +32,9 @@ public class Hangman {
         // specify the get request
         HttpPost postRequest = new HttpPost("/hangman");
 
-        System.out.println("executing request to " + request);
+        System.out.println("executing request to " + host);
 
-        HttpResponse httpResponse = httpClient.execute(request, postRequest);
+        HttpResponse httpResponse = httpClient.execute(host, postRequest);
         HttpEntity entity = httpResponse.getEntity();
 
         System.out.println("----------------------------------------");
@@ -50,22 +50,20 @@ public class Hangman {
 
             String retSrc = EntityUtils.toString(entity);
             System.out.println("Entity:" + retSrc);
-
-            // parsing JSON
-
             JSONObject result = new JSONObject(retSrc); //Convert String to JSON Object
-            String t = (String) result.get("token");
-            return t;
+            String gameId = (String) result.get("token");
+            return gameId;
         }
         return null; // TODO
     }
 
-    private void guess() throws IOException {
+    private void guessNextMove(String gameId) throws IOException {
         // PUT /hangman { token: game token, letter: guess }
 
-        String data = "{ token: 'game token', letter: 'a'}";
+        String data = "{ token: '" + gameId + "', letter: 'a'}";
         HttpPut request = new HttpPut("/hangman");
 
+        // TODO are these necessary?Review them
         StringEntity params = new StringEntity(data, "UTF-8");
         params.setContentType("application/json");
         request.addHeader("content-type", "application/json");
@@ -76,7 +74,7 @@ public class Hangman {
 
         System.out.println("executing request to " + request);
 
-        HttpResponse httpResponse = httpClient.execute(request);
+        HttpResponse httpResponse = httpClient.execute(host, request);
         HttpEntity entity = httpResponse.getEntity();
 
         System.out.println("----------------------------------------");
@@ -95,8 +93,8 @@ public class Hangman {
 
     private void run() {
         try {
-            String token = newGame();
-            guess();
+            String gameId = newGame();
+            guessNextMove(gameId);
 
         } catch (Exception e) { // TODO be specific
             e.printStackTrace();
