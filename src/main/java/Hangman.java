@@ -3,6 +3,7 @@ import org.apache.http.HttpEntity;
 import org.apache.http.HttpHost;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
 
@@ -14,17 +15,17 @@ public class Hangman {
     HttpResponse asdfadf;
 
     public static void main(String[] args) {
-        DefaultHttpClient httpclient = new DefaultHttpClient();
+        DefaultHttpClient httpclient = new DefaultHttpClient();// TODO:deprecated
         try {
             // specify the host, protocol, and port
-            HttpHost target = new HttpHost("weather.yahooapis.com", 80, "http");
+            HttpHost target = new HttpHost("hangman-api.herokuapp.com", 80, "http");
 
             // specify the get request
-            HttpGet getRequest = new HttpGet("/forecastrss?p=80020&u=f");
+            HttpPost postRequest = new HttpPost("/hangman");
 
             System.out.println("executing request to " + target);
 
-            HttpResponse httpResponse = httpclient.execute(target, getRequest);
+            HttpResponse httpResponse = httpclient.execute(target, postRequest);
             HttpEntity entity = httpResponse.getEntity();
 
             System.out.println("----------------------------------------");
